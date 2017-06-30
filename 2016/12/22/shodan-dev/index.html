@@ -85,21 +85,24 @@
 
 
 <meta name="description" content="TL;DR介绍Shodan api的开发接口及数据结构，本文分为三部分，查询，扫描，告警。
+初始化安装shodan https://github.com/achillean/shodan-python1pip install shodan
 初始化12import shodanapi = shodan.Shodan(&apos;YOUR API KEY&apos;)
-查询Search1234results = api.search(&quot;apache&quot;) #返回第一页results = api.search(&quot;apache&quot;, page=2) #返回第一页for ba">
+查询Search1234results = api.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Shodan使用笔记之开发篇">
 <meta property="og:url" content="http://sipcer.com/2016/12/22/shodan-dev/index.html">
 <meta property="og:site_name" content="Sipcer's Blog">
 <meta property="og:description" content="TL;DR介绍Shodan api的开发接口及数据结构，本文分为三部分，查询，扫描，告警。
+初始化安装shodan https://github.com/achillean/shodan-python1pip install shodan
 初始化12import shodanapi = shodan.Shodan(&apos;YOUR API KEY&apos;)
-查询Search1234results = api.search(&quot;apache&quot;) #返回第一页results = api.search(&quot;apache&quot;, page=2) #返回第一页for ba">
-<meta property="og:updated_time" content="2016-12-22T12:40:47.000Z">
+查询Search1234results = api.">
+<meta property="og:updated_time" content="2016-12-23T09:17:25.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Shodan使用笔记之开发篇">
 <meta name="twitter:description" content="TL;DR介绍Shodan api的开发接口及数据结构，本文分为三部分，查询，扫描，告警。
+初始化安装shodan https://github.com/achillean/shodan-python1pip install shodan
 初始化12import shodanapi = shodan.Shodan(&apos;YOUR API KEY&apos;)
-查询Search1234results = api.search(&quot;apache&quot;) #返回第一页results = api.search(&quot;apache&quot;, page=2) #返回第一页for ba">
+查询Search1234results = api.">
 
 
 
@@ -373,7 +376,8 @@
 
       
         <h2 id="TL-DR"><a href="#TL-DR" class="headerlink" title="TL;DR"></a>TL;DR</h2><p>介绍Shodan api的开发接口及数据结构，本文分为三部分，查询，扫描，告警。</p>
-<h2 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> shodan</div><div class="line">api = shodan.Shodan(<span class="string">'YOUR API KEY'</span>)</div></pre></td></tr></table></figure>
+<h2 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h2><p>安装shodan <a href="https://github.com/achillean/shodan-python" target="_blank" rel="external">https://github.com/achillean/shodan-python</a><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install shodan</div></pre></td></tr></table></figure></p>
+<p>初始化<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> shodan</div><div class="line">api = shodan.Shodan(<span class="string">'YOUR API KEY'</span>)</div></pre></td></tr></table></figure></p>
 <h2 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h2><h3 id="Search"><a href="#Search" class="headerlink" title="Search"></a>Search</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">results = api.search(<span class="string">"apache"</span>) <span class="comment">#返回第一页</span></div><div class="line">results = api.search(<span class="string">"apache"</span>, page=<span class="number">2</span>) <span class="comment">#返回第一页</span></div><div class="line"><span class="keyword">for</span> banner <span class="keyword">in</span> api.search_cursor(<span class="string">'apache'</span>): <span class="comment">#相当于遍历第一页results['matches']</span></div><div class="line">    print(banner)</div></pre></td></tr></table></figure>
 <a id="more"></a>
 <p>results格式如下：<br>其中total为结果数量，matches包含所有搜索结果，一次search最多返回100条记录<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="string">'total'</span>: <span class="number">1234</span>,</div><div class="line">    <span class="string">'matches'</span>: [</div><div class="line">        &#123;<span class="string">'_shodan'</span>: &#123;<span class="string">'crawler'</span>: <span class="string">'c4f6dbc...'</span>,</div><div class="line">          <span class="string">'id'</span>: <span class="string">'d39a2f2e-...'</span>,</div><div class="line">          <span class="string">'module'</span>: <span class="string">'http'</span>,</div><div class="line">          <span class="string">'options'</span>: &#123;&#125;&#125;,</div><div class="line">         <span class="string">'asn'</span>: <span class="string">'AS11111'</span>,</div><div class="line">         <span class="string">'data'</span>: <span class="string">'HTTP/1.1 200 ...'</span>,</div><div class="line">         <span class="string">'deprecated'</span>: &#123;<span class="string">'html'</span>: &#123;<span class="string">'eol'</span>: <span class="string">'2016-12-xx'</span>, <span class="string">'new'</span>: <span class="string">'http.html'</span>&#125;,</div><div class="line">          <span class="string">'title'</span>: &#123;<span class="string">'eol'</span>: <span class="string">'2016-12-xx'</span>, <span class="string">'new'</span>: <span class="string">'http.title'</span>&#125;&#125;,</div><div class="line">         <span class="string">'domains'</span>: [],</div><div class="line">         <span class="string">'hash'</span>: <span class="number">-1234567890</span>,</div><div class="line">         <span class="string">'hostnames'</span>: [],</div><div class="line">         <span class="string">'http'</span>: &#123;<span class="string">'components'</span>: &#123;<span class="string">'jQuery'</span>: &#123;<span class="string">'categories'</span>: [<span class="string">'javascript-frameworks'</span>]&#125;&#125;,</div><div class="line">          <span class="string">'html'</span>: <span class="string">'&lt;html&gt;...'</span></div><div class="line">          <span class="string">'host'</span>: <span class="string">'x.x.x.x'</span>,</div><div class="line">          <span class="string">'html_hash'</span>: <span class="number">-1234567890</span>,</div><div class="line">          <span class="string">'location'</span>: <span class="string">'/'</span>,</div><div class="line">          <span class="string">'redirects'</span>: [],</div><div class="line">          <span class="string">'robots'</span>: <span class="keyword">None</span>,</div><div class="line">          <span class="string">'server'</span>: <span class="keyword">None</span>,</div><div class="line">          <span class="string">'sitemap'</span>: <span class="keyword">None</span>,</div><div class="line">          <span class="string">'title'</span>: <span class="string">''</span>&#125;,</div><div class="line">         <span class="string">'ip'</span>: <span class="number">1234567890</span>,</div><div class="line">         <span class="string">'ip_str'</span>: <span class="string">'x.x.x.x'</span>,</div><div class="line">         <span class="string">'isp'</span>: <span class="string">'test'</span>,</div><div class="line">         <span class="string">'location'</span>: &#123;<span class="string">'area_code'</span>: <span class="keyword">None</span>,</div><div class="line">          <span class="string">'city'</span>: <span class="string">'Beijing'</span>,</div><div class="line">          <span class="string">'country_code'</span>: <span class="string">'CN'</span>,</div><div class="line">          <span class="string">'country_code3'</span>: <span class="string">'CHN'</span>,</div><div class="line">          <span class="string">'country_name'</span>: <span class="string">'China'</span>,</div><div class="line">          <span class="string">'dma_code'</span>: <span class="keyword">None</span>,</div><div class="line">          <span class="string">'latitude'</span>: <span class="number">00.0000000</span>,</div><div class="line">          <span class="string">'longitude'</span>: <span class="number">00.000</span>,</div><div class="line">          <span class="string">'postal_code'</span>: <span class="keyword">None</span>,</div><div class="line">          <span class="string">'region_code'</span>: <span class="string">'30'</span>&#125;,</div><div class="line">         <span class="string">'org'</span>: <span class="string">'test'</span>,</div><div class="line">         <span class="string">'os'</span>: <span class="keyword">None</span>,</div><div class="line">         <span class="string">'port'</span>: <span class="number">80</span>,</div><div class="line">         <span class="string">'timestamp'</span>: <span class="string">'2016-12-22T10:10:14.842784'</span>,</div><div class="line">         <span class="string">'title'</span>: <span class="string">''</span>,</div><div class="line">         <span class="string">'transport'</span>: <span class="string">'tcp'</span>&#125;,</div><div class="line">         ...</div><div class="line">    ]</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
@@ -422,6 +426,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/06/30/proxmark3-easy-1/" rel="prev" title="Proxmark3 Easy入门系列一">
+                Proxmark3 Easy入门系列一 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -493,7 +501,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-count">4</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -510,7 +518,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -592,7 +600,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2016</span>
+  <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
